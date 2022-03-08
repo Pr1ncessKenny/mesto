@@ -1,0 +1,23 @@
+.page{
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  padding: 0 200px;
+  background: #000;
+  color: #fff;
+}
+@media(max-width:1279px){
+  .page{
+    padding: 0 150px;
+  }
+}
+@media(max-width:1024px){
+  .page{
+    padding: 0 50px;
+  }
+}
+@media(max-width:767px){
+  .page{
+    padding: 0;
+  }
+}

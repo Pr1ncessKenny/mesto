@@ -1,0 +1,28 @@
+.profile__settings{
+  content: '';
+  position: absolute;
+  top: 25px;
+  right: -42px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background: url(../../../images/pencil.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #fff;
+  transform: translateY(-50%);
+  transition: all .3s ease 0s;
+  cursor: pointer;
+}
+.profile__settings:hover{
+  opacity: 0.6;
+}
+
+@media(max-width:767px){
+  .profile__settings{
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    right: -28px;
+  }
+}

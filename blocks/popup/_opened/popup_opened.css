@@ -1,0 +1,9 @@
+.popup_opened{
+  visibility: visible;
+  opacity: 1;
+  z-index: 5;
+  transition: all .8s ease 0s;
+}
+.popup_opened .popup__container{
+  transform: scale(1);
+}

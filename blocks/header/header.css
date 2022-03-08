@@ -1,0 +1,8 @@
+.header{
+  padding: 45px 0;
+}
+@media(max-width:767px){
+  .header{
+    padding: 28px 0 0;
+  }
+}

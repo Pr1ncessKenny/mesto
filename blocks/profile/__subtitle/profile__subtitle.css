@@ -1,0 +1,12 @@
+.profile__subtitle{
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+}
+@media(max-width:767px){
+  .profile__subtitle{
+    margin: 14px 0 0;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

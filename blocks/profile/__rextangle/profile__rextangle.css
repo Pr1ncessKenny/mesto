@@ -1,0 +1,20 @@
+.profile__rextangle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #fff;
+  font-size: 34px;
+  transition: all .3s ease 0s;
+}
+.profile__rextangle:hover{
+  opacity: 0.6;
+}
+
+@media(max-width:767px){
+  .profile__rextangle{
+    width: 100%;
+    margin: 36px 0 0;
+  }
+}
