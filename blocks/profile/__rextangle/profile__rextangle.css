@@ -7,6 +7,7 @@
   border: 2px solid #fff;
   font-size: 34px;
   transition: all .3s ease 0s;
+  cursor: pointer;
 }
 .profile__rextangle:hover{
   opacity: 0.6;

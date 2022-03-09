@@ -9,6 +9,9 @@
   transition: all .8s ease 0s;
   transform: scale(.2);
 }
+.popup_opened .popup__container{
+  transform: scale(1);
+}
 @media(max-width:767px){
   .popup__container{
     width: 282px;
