@@ -16,6 +16,9 @@ function popupOpen(){
 function popupClose(){
   popup.classList.remove('popup_opened');
 }
+closePopup.addEventListener('click', () => {
+  popupClose();
+})
 
 function addProfileData() {
   profileNamePopup.value = profileName.textContent;
@@ -29,6 +32,7 @@ function profileNameChange(evt) {
   popupClose();
 }
 openPopup.addEventListener('click', () => {
+  popupOpen();
   addProfileData();
 });
 
