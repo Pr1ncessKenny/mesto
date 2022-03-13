@@ -20,6 +20,7 @@
 @media(max-width:767px){
   .profile__rextangle{
     width: 100%;
+    background-image: url(../../../images/plusMobile.svg);
     margin: 36px 0 0;
   }
 }
