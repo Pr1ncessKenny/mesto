@@ -6,11 +6,7 @@
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   box-sizing:border-box;
   border-radius: 10px;
-  transition: all .8s ease 0s;
-  transform: scale(.2);
-}
-.popup_opened .popup__container{
-  transform: scale(1);
+  transition: all .5s ease 0s;
 }
 @media(max-width:767px){
   .popup__container{

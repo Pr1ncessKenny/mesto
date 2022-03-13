@@ -11,8 +11,5 @@
   cursor: pointer;
 }
 .element__heart:hover{
-  background-image: url(../../../images/heartHover.svg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+  opacity: 0.5;
 }
