@@ -1,5 +1,6 @@
 .header{
   padding: 45px 0 0;
+  border-bottom: 1px solid hsla(0, 0%, 33%, 0.7);
 }
 @media(max-width:767px){
   .header{

@@ -1,13 +1,12 @@
-.copyriting{
-  padding: 66px 0 60px;
+.footer__copyriting{
+  margin: 0;
   font-size: 18px;
   line-height: 22px;
   color: #545454;
 }
 
 @media(max-width:767px){
-  .copyriting{
-    padding: 48px 19px 36px;
+  .footer__copyriting{
     font-size: 14px;
     line-height: 17px;
   }
