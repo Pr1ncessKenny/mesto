@@ -1,28 +1,32 @@
-let popup = document.querySelector(".popup");
-let popupCreate = document.querySelector(".popup_create");
-let popupImg = document.querySelector(".popup_type_img");
-let popupClose = document.querySelector(".popup__close");
-let popupCreateClose = document.querySelector(".popup__close_create");
-let popapImgClose = document.querySelector(".popup__close_img");
-let popupOpen = document.querySelector(".profile__settings");
-let newCard = document.querySelector(".profile__rextangle");
-let profileName = document.querySelector(".profile__name");
-let profilePost = document.querySelector(".profile__subtitle");
-let profileNamePopup = document.querySelector("#name");
-let profilePostPopup = document.querySelector("#who-is");
-let createName= document.querySelector("#title");
-let createLink= document.querySelector("#place-link");
-let popupForm = document.querySelector(".popup__form");
-let cardDelete = document.querySelector(".element__delete");
-let popupFormCreate = document.querySelector(".popup__form_create");
-let popupPhoto = document.querySelector(".popup__photo");
-let popupName = document.querySelector(".popup__name");
+const popups = document.querySelectorAll(".popup");
+const popupProfile = document.querySelector(".popup-profile");
+const popupCreate = document.querySelector(".popup_create");
+const popupImg = document.querySelector(".popup_type_img");
+const popupClose = document.querySelector(".popup-profile__close");
+const popupCreateClose = document.querySelector(".popup__close_create");
+const popapImgClose = document.querySelector(".popup__close_img");
+const popupOpen = document.querySelector(".profile__settings");
+const newCard = document.querySelector(".profile__rextangle");
+const profileName = document.querySelector(".profile__name");
+const profilePost = document.querySelector(".profile__subtitle");
+const profileNamePopup = document.querySelector("#name");
+const profilePostPopup = document.querySelector("#who-is");
+const createName= document.querySelector("#title");
+const createLink= document.querySelector("#place-link");
+const popupForm = document.querySelector(".popup-profile__form");
+const cardDelete = document.querySelector(".element__delete");
+const popupFormCreate = document.querySelector(".popup__form_create");
+const popupPhoto = document.querySelector(".popup__photo");
+const popupName = document.querySelector(".popup__name");
 const elemsContainer = document.querySelector(".elements");
 const placeTemplate = document.querySelector('#template-element').content;
 
 
 function openPopup(elem){
   elem.classList.add('popup_opened');
+}
+function openPopupProfile() {
+  popupProfile.classList.add('popup_opened');
   profileNamePopup.value = profileName.textContent;
   profilePostPopup.value = profilePost.textContent;
 }
@@ -35,7 +39,7 @@ function changeProfileName(evt) {
   evt.preventDefault();
   profileName.textContent = profileNamePopup.value;
   profilePost.textContent = profilePostPopup.value;
-  closePopup(popup);
+  closePopup(popupProfile);
 }
 
 // Create Cards
@@ -94,8 +98,6 @@ function createElement(item) {
 
   placeImg.addEventListener('click', () => openPopupImg(placeImg));
 
-  placeElem.querySelector
-
   return placeElem;
 }
 function createrCard(item) {
@@ -115,12 +117,16 @@ function openPopupImg(placeImg){
   popupName.textContent = placeImg.alt;
 }
 
+// Михаил, спасибо большое за идею, сам не подумал об этом )
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+     if (evt.target.classList.contains('popup__close')) {
+        closePopup(popup);
+      }
+  });
+});
 
-
-popupOpen.addEventListener('click', () => openPopup(popup));
+popupOpen.addEventListener('click', openPopupProfile);
 newCard.addEventListener('click', () => openPopup(popupCreate));
-popupClose.addEventListener('click',() => closePopup(popup));
-popupCreateClose.addEventListener('click',() => closePopup(popupCreate));
-popapImgClose.addEventListener('click',() => closePopup(popupImg));
 popupForm.addEventListener('submit', changeProfileName);
 popupFormCreate.addEventListener('submit', createNewCard);
