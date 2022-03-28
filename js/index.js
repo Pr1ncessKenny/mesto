@@ -25,11 +25,6 @@ const placeTemplate = document.querySelector('#template-element').content;
 function openPopup(elem){
   elem.classList.add('popup_opened');
 }
-function openPopupProfile() {
-  popupProfile.classList.add('popup_opened');
-  profileNamePopup.value = profileName.textContent;
-  profilePostPopup.value = profilePost.textContent;
-}
 
 function closePopup(elem){
   elem.classList.remove('popup_opened');
@@ -126,7 +121,11 @@ popups.forEach((popup) => {
   });
 });
 
-popupOpen.addEventListener('click', openPopupProfile);
+popupOpen.addEventListener('click', () => {
+  openPopup(popupProfile);
+  profileNamePopup.value = profileName.textContent;
+  profilePostPopup.value = profilePost.textContent;
+});
 newCard.addEventListener('click', () => openPopup(popupCreate));
 popupForm.addEventListener('submit', changeProfileName);
 popupFormCreate.addEventListener('submit', createNewCard);
