@@ -112,7 +112,6 @@ function openPopupImg(placeImg){
   popupName.textContent = placeImg.alt;
 }
 
-// Михаил, спасибо большое за идею, сам не подумал об этом )
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
      if (evt.target.classList.contains('popup__close')) {
@@ -120,6 +119,23 @@ popups.forEach((popup) => {
       }
   });
 });
+
+popups.forEach(popup => {
+  popup.addEventListener('click', evt => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+  })
+})
+
+function closePopupESC(evt) {
+  if(evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+document.addEventListener('keydown', closePopupESC);
+
 
 popupOpen.addEventListener('click', () => {
   openPopup(popupProfile);
