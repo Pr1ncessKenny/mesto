@@ -48,10 +48,21 @@ function renderInitialElems() {
 
 renderInitialElems();
 
-//--------------------------------
+// Validation
+
+/* function validation(item) {
+  const formValidator = new FormValidator(item,'.popup__form');
+  formValidator.enableValidation(item);
+
+  return formValidator;
+}
+validation(); */
+
+
+//-------------
 
 popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
+   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     }

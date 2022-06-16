@@ -11,6 +11,29 @@ class FormValidator {
     this._saveBtn = this._popupForm.querySelector(this._submitButtonSelector);
   }
 
+  enableValidation() {
+    const formList = Array.from(document.querySelectorAll(this._formSelector));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    this._setEventListeners();
+   });
+  }
+
+  _setEventListeners() {
+
+    this._toggleButtonState();
+
+    this._inputList.forEach( el => {
+      el.addEventListener('input', () => {
+        this._isInputValid(el);
+        this._toggleButtonState();
+      });
+    });
+
+  }
+
   _showInputError(el) {
     const formError = this._popupForm.querySelector(`.${el.id}-error`);
 
