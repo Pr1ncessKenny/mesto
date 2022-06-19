@@ -1,4 +1,4 @@
-import {openPopup} from './index.js';
+import {openPopup, popupImg, placeTemplate} from './index.js';
 
 
 export class Card {
@@ -30,6 +30,7 @@ export class Card {
 
   _handleRemoveCard() {
     this._element.remove();
+    this._element = null;
 }
 
   _handleLikeButton(evt) {
@@ -46,6 +47,6 @@ export class Card {
   _setListeners(){
     this._element.querySelector('.element__delete').addEventListener('click', () => this._handleRemoveCard() );
     this._element.querySelector('.element__heart').addEventListener('click', this._handleLikeButton);
-    this._element.querySelector('.element__photo').addEventListener('click', () => this._viewImage() );
+    this._placeImg.addEventListener('click', () => this._viewImage() );
   }
 }

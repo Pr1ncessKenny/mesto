@@ -34,8 +34,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button class="popup__close popup-profile__close" type="button"></button>
-        <form class="popup__form popup-profile__form" name="title-form" novalidate>
-          <input id="name" type="text" name="name" class="popup__input" value="" minlength="2" maxlength="40" required>
+        <form class="popup__form popup-profile__form" name="title-form1" novalidate>
+          <input id="name" type="text" name="autor" class="popup__input" value="" minlength="2" maxlength="40" required>
           <span class="popup__input-error name-error"></span>
           <input id="who-is" type="text" name="who-is" class="popup__input" value="" minlength="2" maxlength="200" required>
           <span class="popup__input-error who-is-error"></span>
@@ -47,8 +47,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <button class="popup__close popup__close_create" type="button"></button>
-        <form class="popup__form popup__form_create" name="title-form" novalidate>
-          <input id="title" type="text" name="name" class="popup__input popup__input_create" placeholder="Название" minlength="2" maxlength="30" required>
+        <form class="popup__form popup__form_create" name="title-form2" novalidate>
+          <input id="title" type="text" name="place" class="popup__input popup__input_create" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="popup__input-error title-error"></span>
           <input id="place-link" type="url" name="who-is" class="popup__input popup__input_create" placeholder="Ссылка на картинку" required>
           <span class="popup__input-error place-link-error"></span>
@@ -74,8 +74,6 @@
       </div>
     </article>
   </template>
-  <script src="./js/utils.js"></script>
-  <script src="./js/validate.js"></script>
   <script src="./js/index.js" type="module"></script>
 </body>
 </html>
