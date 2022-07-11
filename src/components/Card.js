@@ -1,11 +1,12 @@
-import {openPopup, popupImg, placeTemplate} from './index.js';
+import {openPopup, popupImg, placeTemplate} from '../pages/index.js';
 
 
 export class Card {
 
-  constructor(cardInfo, cardSelector) {
-    this._name = cardInfo.name;
-    this._link = cardInfo.link;
+  constructor({name, link, handleCardClick}, cardSelector) {
+    this._name = name;
+    this._link = link;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
 
