@@ -1,42 +1,38 @@
-import { popupConfiguration } from "../pages/index.js";
-
-export class Popup {
-  constructor(popupSelector, popupConfig) {
-    this._popupSelector = popupSelector;
-    this._activeModifier = popupConfig.activeModifier;
-    this._closeBtnSelector = popupConfig.closeBtnSelector;
-  }
-
-  _handleEscClose = evt => {
-    if(evt.key === 'Escape') {
-      this.close();
+export default class Popup {
+    constructor(popupSelector, popupConfig) {
+        this._popupSelector = popupSelector;
+        this._activeModifier = popupConfig.activeModifier;
+        this._closeBtnSelector = popupConfig.closeBtnSelector; 
+        this._popup = document.querySelector(`.${this._popupSelector}`);
+        this._closeBtn = this._popup.querySelector(`.${this._closeBtnSelector}`);
     }
-  }
 
-  _handleCloseBtnClick = () => {
-    this.close();
-  }
-
-  _handleCloseOverlayClick = (evt) => {
-    if (evt.target === evt.currentTarget) {
-      this.close();
+    open() {
+        document.addEventListener('keydown', this._handleEscClose);
+        this._popup.classList.add(this._activeModifier);
     }
-  }
 
-  setEventListeners() {
-    this._popup = document.querySelector(`.${this._popupSelector}`);
-    this._closeButton = this._popup.querySelector(`.${this._closeBtnSelector}`);
-    this._popup.addEventListener('mousedown', this._handleCloseOverlayClick);
-    this._closeButton.addEventListener('click', this._handleCloseBtnClick);
-  }
+    close() {
+        this._popup.classList.remove(this._activeModifier);
+        document.removeEventListener('keydown', this._handleEscClose);
+    }
 
-  open = () => {
-    this._popup.classList.add(this._activeModifier);
-    document.addEventListener('keydown', this._handleEscClose);
-  }
+    _handleEscClose = (event) => {
+        if (event.key === 'Escape') {
+            this.close();
+        }
+    }
 
-  close() {
-    this._popup.classList.remove(this._activeModifier);
-    document.removeEventListener('keydown', this._handleEscClose);
-  }
+    _handleOverlayClose = (event) => {
+        if (event.target === event.currentTarget) {
+            this.close();
+        }
+    }
+
+    _handleCloseBtnClick = () => this.close();
+
+    setEventListeners() {
+        this._popup.addEventListener('mousedown', this._handleOverlayClose);
+        this._closeBtn.addEventListener('click', this._handleCloseBtnClick);
+    }
 }

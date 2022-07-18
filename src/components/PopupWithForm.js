@@ -1,58 +1,59 @@
-import { Popup } from "./Popup.js";
+import Popup from "./Popup.js";
 
-export class PopupWithForm extends Popup {
-  constructor(popupSelector, formName, popupConfig, {inputSelector, submitBtnSelector, formSelector}, errorsResetCallback, submitCallback, getterCallback = null) {
-    super(popupSelector, popupConfig);
-    this._formName = formName;
-    this._submitCallback = submitCallback;
-    this._inputSelector = inputSelector;
-    this._submitBtnSelector = submitBtnSelector;
-    this._formSelector = formSelector;
-    this._getterCallback = getterCallback;
-    this._formElem = document.forms[this._formName];
-    this._inputs = Array.from(this._formElem.querySelectorAll(`.${this._inputSelector}`));
-    this._submitBtn = this._formElem.querySelector(`${this._submitBtnSelector}`);
-    this._errorsResetCallback = errorsResetCallback;
-  }
-  _getInputValues(){
-    const values = {};
-    this._inputs.forEach(inputElem => {
-      values[inputElem.id.slice(6)] = inputElem.value;
-    })
+export default class PopupWithForm extends Popup {
+    constructor(
+        popupSelector,
+        popupConfig,
+        formName,
+        inputSelector,
+        cleanUpFormErrors,
+        submitCallBack,
+        getterCallBack = null
+    ) {
+        super(popupSelector, popupConfig);
 
-    return values;
-  }
+        this._formName = formName;
+        this._inputSelector = inputSelector;
+        this._cleanUpFormErrors = cleanUpFormErrors;
+        this._submitCallBack = submitCallBack;
+        this._getterCallBack = getterCallBack;
+        this._formElement = document.forms[this._formName];
+        this._inputList = Array.from(this._formElement.querySelectorAll(`.${this._inputSelector}`));
+    }æææ
 
-  _setInputValues(values) {
-    this._inputs.forEach(inputElem => {
-      inputElem.value = values[inputElem.id.slice(6)];
-    })
-  }
-
-  _handleSubmit = (evt) => {
-    evt.preventDefault();
-    this._submitCallback(this._getInputValues());
-    this.close();
-
-  }
-
-  setEventListeners(){
-    super.setEventListeners();
-    this._formElem.addEventListener('submit', this._handleSubmit);
-  }
-
-  close() {
-    super.close();
-    this._formElem.reset();
-  }
-
-  open() {
-    if(this._getterCallback) {
-      this._setInputValues(this._getterCallback());
-    } else {
-      this._formElem.reset();
+    close() {
+        super.close();
+        this._formElement.reset();
     }
-    this._errorsResetCallback();
-    super.open();
-  }
+
+
+    _getInputValues = () => {
+        const values = {};
+        this._inputList.forEach((inputElement) => values[inputElement.id.slice(6)] = inputElement.value);
+        return values;
+    };
+
+
+    _setInputValues(values) {
+        this._inputList.forEach((inputElement) => inputElement.value = values[inputElement.id.slice(6)]);
+    }
+
+    open() {
+        if (this._getterCallBack) {
+            this._setInputValues(this._getterCallBack());
+        }
+        this._cleanUpFormErrors();
+        super.open();
+    }
+
+    _handleSubmit = (event) => {
+        event.preventDefault();
+        this._submitCallBack(this._getInputValues());
+        this.close();
+    }
+
+    setEventListeners() {
+        super.setEventListeners();
+        this._formElement.addEventListener("submit", this._handleSubmit);
+    }
 }

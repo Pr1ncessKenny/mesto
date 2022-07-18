@@ -1,46 +1,22 @@
-import { profileConfiguration } from "../pages/index.js";
+//отображение информации о пользователе на странице
+export default class UserInfo {
+    constructor({ nameSelector, jobSelector }) {
+        this._nameSelector = nameSelector;
+        this._jobSelector = jobSelector;
+        this._nameElem = document.querySelector(`.${this._nameSelector}`);
+        this._jobElem = document.querySelector(`.${this._jobSelector}`);
+    }
 
-export class UserInfo {
-  constructor({titleSelector, jobSelector}){
-    this._titleSelector = titleSelector;
-    this._jobSelector = jobSelector;
-    this._titleElem = document.querySelector(`.${this._titleSelector}`);
-    this._jobElem = document.querySelector(`.${this._jobSelector}`);
-  }
-
-  setUserInfo = (data) => {
-    this._titleElem.textContent = data.title || '';
-    this._jobElem.textContent = data.job || '';
-  }
-
-  getUserInfo = () => {
-    return {title: this._titleElem.textContent, job: this._jobElem.textContent};
-  }
+    //возвращает объект с данными пользователя
+    getUserInfo = () => {
+        return {
+            title: this._nameElem.textContent,
+            job: this._jobElem.textContent,
+        };
+    };
+    //принимает новые данные пользователя и добавляет их на страницу
+    setUserInfo(data) {
+        this._nameElem.textContent = data.title || "";
+        this._jobElem.textContent = data.job || "";
+    }
 }
-
-
-
-/* export class UserInfo {
-  constructor({ nameSelector, descriptionSelector, avatarSelector }) {
-      this._name = document.querySelector(nameSelector);
-      this._description = document.querySelector(descriptionSelector);
-      this._avatar = document.querySelector(avatarSelector);
-  }
-
-  getUserInfo() {
-      return {
-          name: this._name.textContent,
-          description: this._description.textContent,
-          avatar: this._avatar
-      };
-  }
-
-  setUserInfo(userInfo) {
-      this._name.textContent = userInfo.name;
-      this._description.textContent = userInfo.description;
-  }
-
-  setAvatar(userInfo) {
-      this._avatar.src = userInfo.avatar;
-  }
-} */
