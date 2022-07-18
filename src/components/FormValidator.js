@@ -17,7 +17,7 @@ export class FormValidator {
     inputElement.classList.add(this._inputErrorClass);
   }
 
-  _hideInputError(inputElement) {
+  _hideInputError = (inputElement) => {
     const formError = this._popupForm.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     formError.classList.remove(this._errorElem);
@@ -67,14 +67,14 @@ export class FormValidator {
     });
   }
 
-  resetValidation() {
+  resetValidation = () => {
     this.inputList.forEach(inputItem => {
       this._hideInputError(inputItem);
-    });
+    })
     this.toggleButtonState();
   }
 
-  enableValidation() {
+  enableValidation = () => {
     this._popupForm.addEventListener('submit', evt => evt.preventDefault());
     this._setEventListeners();
   }

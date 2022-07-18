@@ -1,39 +1,42 @@
-import { popupOpend, popups } from "../pages/index.js";
+import { popupConfiguration } from "../pages/index.js";
 
 export class Popup {
-  constructor(popupSelector) {
-    this._popupSelector = document.querySelector(popupSelector);
-    this._closeButton = this._popupSelector.querySelector('.popup__close');
+  constructor(popupSelector, popupConfig) {
+    this._popupSelector = popupSelector;
+    this._activeModifier = popupConfig.activeModifier;
+    this._closeBtnSelector = popupConfig.closeBtnSelector;
   }
 
-  open() {
-    this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', () => {this._handleEscClose()});
-  }
-
-  close() {
-    this._popupSelector.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._closePopupESCEvent);
-  }
-
-  _handleEscClose() {
+  _handleEscClose = evt => {
     if(evt.key === 'Escape') {
       this.close();
     }
   }
 
-  _mousedown(){
-    popups.forEach((popup) => {
-      popup.addEventListener('mousedown', (evt) => {
-       if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup_opened')) {
-        this.close();
-       }
-     });
-   });
+  _handleCloseBtnClick = () => {
+    this.close();
+  }
+
+  _handleCloseOverlayClick = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      this.close();
+    }
   }
 
   setEventListeners() {
-    this._closeButton.addEventListener('click', () => this.close());
-    this._mousedown();
+    this._popup = document.querySelector(`.${this._popupSelector}`);
+    this._closeButton = this._popup.querySelector(`.${this._closeBtnSelector}`);
+    this._popup.addEventListener('mousedown', this._handleCloseOverlayClick);
+    this._closeButton.addEventListener('click', this._handleCloseBtnClick);
+  }
+
+  open = () => {
+    this._popup.classList.add(this._activeModifier);
+    document.addEventListener('keydown', this._handleEscClose);
+  }
+
+  close() {
+    this._popup.classList.remove(this._activeModifier);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 }
