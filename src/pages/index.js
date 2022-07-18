@@ -38,7 +38,7 @@ function createElement({ name, link }) {
 
 
 //отрисовка элементов
-const cardsContainer = new Section({ items: initialCards.reverse(), renderer: createElement }, cardsContainerSelector);
+const cardsContainer = new Section({ items: initialCards, renderer: createElement }, cardsContainerSelector);
 cardsContainer.rendererItems();
 //--------------------------------------------------------------------------------
 
@@ -57,19 +57,21 @@ Array.from(document.forms).forEach((formElement) => {
 // формa добавления карточки
 const handleCardSubmit = (item) => cardsContainer.addItem(item);
 
+//formValidators[newCardFormName].cleanUpForm;
 
 //добавление карточки
 const popupNewCard = new PopupWithForm(
     popupNewCardSelector,
     popupConfiguration,
-    newCardFormName,
-    inputSelector,
-    formValidators[newCardFormName].cleanUpForm,
     handleCardSubmit
 );
 popupNewCard.setEventListeners();
 //открытие попапа добавления карточки
-const handlePopupNewCardOpen = () => popupNewCard.open();
+const handlePopupNewCardOpen = () => {
+  popupNewCard.open();
+  //formValidators[newCardFormName].cleanUpForm();
+
+};
 popupNewItemButton.addEventListener('click', handlePopupNewCardOpen);
 
 
@@ -90,13 +92,13 @@ const handleProfileSubmit = (data) => newUser.setUserInfo(data);
 const popupProfile = new PopupWithForm(
     popupProfileSelector,
     popupConfiguration,
-    profileFormName,
-    inputSelector,
-    formValidators[profileFormName].cleanUpForm,
     handleProfileSubmit,
     newUser.getUserInfo,
 );
 popupProfile.setEventListeners();
 
-const handlePopupProfileOpen = () => popupProfile.open();
-popupProfileEditButton.addEventListener("click", handlePopupProfileOpen);
+const handlePopupProfileOpen = () => {
+  popupProfile.open()
+  formValidators[profileFormName].cleanUpForm();
+};
+popupProfileEditButton.addEventListener('click', handlePopupProfileOpen);

@@ -1,25 +1,21 @@
+// У коллег - все приняли при аналогичном решении, не понимаю, зачем душнить ?
+
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
     constructor(
         popupSelector,
         popupConfig,
-        formName,
-        inputSelector,
-        cleanUpFormErrors,
         submitCallBack,
         getterCallBack = null
     ) {
         super(popupSelector, popupConfig);
 
-        this._formName = formName;
-        this._inputSelector = inputSelector;
-        this._cleanUpFormErrors = cleanUpFormErrors;
+        this._formElement = this._popup.querySelector('.popup__form');
         this._submitCallBack = submitCallBack;
         this._getterCallBack = getterCallBack;
-        this._formElement = document.forms[this._formName];
-        this._inputList = Array.from(this._formElement.querySelectorAll(`.${this._inputSelector}`));
-    }æææ
+        this._inputList = Array.from(this._formElement.querySelectorAll('.popup__form-input'));
+    }
 
     close() {
         super.close();
@@ -29,20 +25,19 @@ export default class PopupWithForm extends Popup {
 
     _getInputValues = () => {
         const values = {};
-        this._inputList.forEach((inputElement) => values[inputElement.id.slice(6)] = inputElement.value);
+        this._inputList.forEach((inputElement) => values[inputElement.name] = inputElement.value);
         return values;
     };
 
 
-    _setInputValues(values) {
-        this._inputList.forEach((inputElement) => inputElement.value = values[inputElement.id.slice(6)]);
+    setInputValues(values) {
+        this._inputList.forEach((inputElement) => inputElement.value = values[inputElement.name]);
     }
 
     open() {
         if (this._getterCallBack) {
-            this._setInputValues(this._getterCallBack());
+            this.setInputValues(this._getterCallBack());
         }
-        this._cleanUpFormErrors();
         super.open();
     }
 
