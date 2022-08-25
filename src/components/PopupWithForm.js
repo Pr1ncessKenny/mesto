@@ -1,5 +1,3 @@
-// У коллег - все приняли при аналогичном решении, не понимаю, зачем душнить ?
-
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
@@ -33,13 +31,6 @@ export default class PopupWithForm extends Popup {
     setInputValues(values) {
         this._inputList.forEach((inputElement) => inputElement.value = values[inputElement.name]);
     }
-
-   /*  open() {
-    if (this._getterCallBack) {
-          this.setInputValues(this._getterCallBack());
-      }
-        super.open();
-    } */
 
     _handleSubmit = (event) => {
         event.preventDefault();

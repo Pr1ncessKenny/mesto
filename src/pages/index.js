@@ -47,8 +47,9 @@ cardsContainer.rendererItems();
 //валидация
 const formValidators = {};
 Array.from(document.forms).forEach((formElement) => {
-    formValidators[formElement.name] = new FormValidator(validationConfig, formElement);
-    formValidators[formElement.name].enableValidation();
+  const formName = formElement.getAttribute('name');
+  formValidators[formName] = new FormValidator(validationConfig, formElement);
+  formValidators[formName].enableValidation();
 });
 
 
@@ -57,8 +58,6 @@ Array.from(document.forms).forEach((formElement) => {
 
 // формa добавления карточки
 const handleCardSubmit = (item) => cardsContainer.addItem(createElement(item));
-
-//formValidators[newCardFormName].cleanUpForm;
 
 //добавление карточки
 const popupNewCard = new PopupWithForm(
@@ -70,7 +69,7 @@ popupNewCard.setEventListeners();
 //открытие попапа добавления карточки
 const handlePopupNewCardOpen = () => {
   popupNewCard.open();
-  //formValidators[newCardFormName].cleanUpForm();
+  formValidators[newCardFormName].cleanUpForm();
 
 };
 popupNewItemButton.addEventListener('click', handlePopupNewCardOpen);
@@ -97,11 +96,13 @@ const popupProfile = new PopupWithForm(
     newUser.getUserInfo,
 );
 
-popupProfile.setInputValues(newUser.getUserInfo());
 popupProfile.setEventListeners();
 
 const handlePopupProfileOpen = () => {
-  popupProfile.open()
+  popupProfile.open();
+  popupProfile.setInputValues(newUser.getUserInfo());
   formValidators[profileFormName].cleanUpForm();
 };
 popupProfileEditButton.addEventListener('click', handlePopupProfileOpen);
+
+// Большое спасибо за подробные пояснения ))
