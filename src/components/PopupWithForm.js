@@ -24,9 +24,9 @@ export default class PopupWithForm extends Popup {
 
 
     _getInputValues = () => {
-        const values = {};
-        this._inputList.forEach((inputElement) => values[inputElement.name] = inputElement.value);
-        return values;
+      this._formValues = {};
+      this._inputList.forEach((inputElement) => this._formValues[inputElement.name] = inputElement.value);
+      return this._formValues;
     };
 
 
@@ -34,12 +34,12 @@ export default class PopupWithForm extends Popup {
         this._inputList.forEach((inputElement) => inputElement.value = values[inputElement.name]);
     }
 
-    open() {
-        if (this._getterCallBack) {
-            this.setInputValues(this._getterCallBack());
-        }
+   /*  open() {
+    if (this._getterCallBack) {
+          this.setInputValues(this._getterCallBack());
+      }
         super.open();
-    }
+    } */
 
     _handleSubmit = (event) => {
         event.preventDefault();

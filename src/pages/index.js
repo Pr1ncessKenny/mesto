@@ -38,6 +38,7 @@ function createElement({ name, link }) {
 
 
 //отрисовка элементов
+
 const cardsContainer = new Section({ items: initialCards, renderer: createElement }, cardsContainerSelector);
 cardsContainer.rendererItems();
 //--------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ Array.from(document.forms).forEach((formElement) => {
 
 
 // формa добавления карточки
-const handleCardSubmit = (item) => cardsContainer.addItem(item);
+const handleCardSubmit = (item) => cardsContainer.addItem(createElement(item));
 
 //formValidators[newCardFormName].cleanUpForm;
 
@@ -95,6 +96,8 @@ const popupProfile = new PopupWithForm(
     handleProfileSubmit,
     newUser.getUserInfo,
 );
+
+popupProfile.setInputValues(newUser.getUserInfo());
 popupProfile.setEventListeners();
 
 const handlePopupProfileOpen = () => {

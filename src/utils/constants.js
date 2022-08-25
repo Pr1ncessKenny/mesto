@@ -1,7 +1,7 @@
 export const initialCards = [
   {
     name: 'Ульяновск',
-    link: 'https://avatars.mds.yandex.net/get-zen_doc/4554796/pub_605095d5011181447b59c342_6050962de781846a40bce4ac/scale_1200'
+    link: 'https://ic.pics.livejournal.com/zdorovs/16627846/1008461/1008461_original.jpg'
   },
   {
     name: 'Москва',
@@ -49,7 +49,7 @@ export const imagePopupConfig = {
 };
 
 export const inputSelector = 'popup__form-input';
-export const cardsContainerSelector = 'elements';
+export const cardsContainerSelector = '.elements';
 export const popupNewCardSelector = 'popup_type_card-item';
 export const popupProfileSelector = 'popup_type_info';
 export const imagePopupSelector = 'popup_type_photo';
