@@ -5,6 +5,7 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 import {
     initialCards,
@@ -105,4 +106,9 @@ const handlePopupProfileOpen = () => {
 };
 popupProfileEditButton.addEventListener('click', handlePopupProfileOpen);
 
-// Большое спасибо за подробные пояснения ))
+
+
+// API--------------------
+
+
+
