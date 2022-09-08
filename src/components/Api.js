@@ -1,59 +1,96 @@
 export default class Api {
-  constructor() {
+    constructor(url) {
+        this._url = url;
+        this._headers = {
+            authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506',
+            'Content-Type': 'application/json'
+        }
+    }
 
-  }
+    _handleResJson(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Возникла ошибка: ${res.status}`); // если ошибка, отклоняем промис
+    }
+
+    getCards() {
+        return fetch(`${this._url}/cards`, {
+            headers: this._headers
+        })
+        .then(this._handleResJson);
+    }
+
+    getUser() {
+        return fetch(`${this._url}/users/me`, {
+            headers: this._headers
+        })
+        .then(this._handleResJson);
+    }
+
+    editUserInfo(title, job) {
+        const body = {
+            name: title,
+            about: job,
+        };
+        return fetch(`${this._url}/users/me`, {
+            headers: this._headers,
+            method: 'PATCH',
+            body: JSON.stringify(body),
+        })
+        .then(this._handleResJson);
+    }
+
+    addCard(newPlace, linkPlace) {
+        const body = {
+            name: newPlace,
+            link: linkPlace,
+        };
+        return fetch(`${this._url}/cards`, {
+            headers: this._headers,
+            method: 'POST',
+            body: JSON.stringify(body),
+        })
+        .then(this._handleResJson);
+    }
+
+    deleteCard(cardId) {
+         return fetch(`${this._url}/cards/${cardId}`, {
+            headers: this._headers,
+            method: 'DELETE',
+        })
+        .then(this._handleResJson);
+    }
+
+    countLikes() {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
+            headers: this._headers,
+        })
+        .then(this._handleResJson);
+    }
+
+    switchLike(cardId, isLiked) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
+            headers: this._headers,
+            method: isLiked ? 'DELETE' : 'PUT',
+        })
+        .then(this._handleResJson);
+    }
+
+    editAvatar(userAvatar) {
+        const body = {
+            avatar: userAvatar
+        };
+        return fetch(`${this._url}/users/me/avatar`, {
+            headers: this._headers,
+            method: 'PATCH',
+            body: JSON.stringify(body),
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Возникла ошибка: ${res.message}`);
+        });
+    }
 }
-
-fetch('https://nomoreparties.co/v1/cohort-49/users/me', {
-  headers: {
-    authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506'
-  }
-})
-.then(res => res.json())
-.then((result) => {
-  console.log(result);
-});
-
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-  headers: {
-    authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506'
-  }
-})
-.then(res => res.json())
-.then((result) => {
-  console.log(result);
-});
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-49/users/me', {
-  method: 'PATCH',
-  headers: {
-    authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: 'Nikita',
-    about: 'Programmist'
-  })
-})
-.then(res => res.json())
-.then((result) => {
-  console.log(result);
-});
-
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-  method: 'POST',
-  headers: {
-    authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  })
-})
-.then(res => res.json())
-.then((result) => {
-  console.log(result);
-});
