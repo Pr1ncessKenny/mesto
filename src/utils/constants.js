@@ -37,6 +37,11 @@ export const saveBtnText = {
   changeBtnText: 'Сохранение...', //Сохраняю...
 };
 
+export const apiConfiguration = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-49',
+  token: '7998d106-1b5f-4dcc-99e0-a865bf0df506'
+};
+
 export const inputSelector = '.popup__form-input';
 export const cardsContainerSelector = '.elements';
 export const popupNewCardSelector = '.popup_type_card-item';

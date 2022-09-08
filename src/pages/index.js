@@ -9,27 +9,28 @@ import Api from '../components/Api.js';
 import UserInfo from '../components/UserInfo.js';
 
 import {
-    validationConfig,
-    imagePopupConfig,
-    popupConfiguration,
-    profileConfiguration,
-    inputSelector, // 'popup__form-input'
-    cardsContainerSelector, // 'elements'
-    popupNewCardSelector, // 'popup_type_card-item'
-    popupDeleteCardSelector, // 'popup_type_deleteCard'
-    popupAvatarSelector, // 'popup_type_avatar'
-    newCardFormName, // 'form-newCard'
-    deleteCardFormName, // 'form-deleteCard'
-    avatarFormName, // 'form-newAvatar'
-    profileFormName, // 'form-profile'
-    popupProfileSelector, // 'popup_type_info'
-    imagePopupSelector, // 'popup_type_photo'
-    addCardBtnText,
-    delCardBtnText,
-    saveBtnText,
+  validationConfig,
+  imagePopupConfig,
+  popupConfiguration,
+  profileConfiguration,
+  inputSelector, // 'popup__form-input'
+  cardsContainerSelector, // 'elements'
+  popupNewCardSelector, // 'popup_type_card-item'
+  popupDeleteCardSelector, // 'popup_type_deleteCard'
+  popupAvatarSelector, // 'popup_type_avatar'
+  newCardFormName, // 'form-newCard'
+  deleteCardFormName, // 'form-deleteCard'
+  avatarFormName, // 'form-newAvatar'
+  profileFormName, // 'form-profile'
+  popupProfileSelector, // 'popup_type_info'
+  imagePopupSelector, // 'popup_type_photo'
+  addCardBtnText,
+  delCardBtnText,
+  saveBtnText,
+  apiConfiguration,
 } from '../utils/constants.js';
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-49', '7998d106-1b5f-4dcc-99e0-a865bf0df506');
+const api = new Api(apiConfiguration);
 
 //кнопки открытия попапов
 const popupNewItemBtn = document.querySelector('.profile__add-button');
