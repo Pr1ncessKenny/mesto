@@ -29,7 +29,7 @@ import {
     saveBtnText,
 } from '../utils/constants.js';
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-49');
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-49', '7998d106-1b5f-4dcc-99e0-a865bf0df506');
 
 //кнопки открытия попапов
 const popupNewItemBtn = document.querySelector('.profile__add-button');
@@ -219,33 +219,3 @@ Promise.all([api.getUser(), api.getCards()])
     .catch((err) => {
         console.log(err); // выведем ошибку в консоль
     });
-
-/* function test() {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-  method: 'POST',
-  headers: {
-    authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: 'Спам картинкой',
-    link: 'https://i.pinimg.com/originals/91/c7/48/91c7483ae29954c8fef4ce699ea8cbe8.jpg'
-  })
-})
-.then(res => res.json)
-
-  fetch('https://mesto.nomoreparties.co/v1/cohort-49/cards', {
-    headers: {
-      authorization: '7998d106-1b5f-4dcc-99e0-a865bf0df506'
-    }
-  })
-  .then(res => res.json)
-  .then(data => console.log(data))
-}
-
-const testing = document.querySelector('.test');
-
-testing.addEventListener('click', () => {
-  test();
-  window.location.reload();
-}); */
